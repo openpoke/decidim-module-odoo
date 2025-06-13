@@ -1,4 +1,4 @@
-name: "[CI] Test"
+name: "[ci] Test"
 
 on:
   push:
@@ -43,15 +43,6 @@ jobs:
       - name: Get npm cache directory path
         id: npm-cache-dir-path
         run: echo "::set-output name=dir::$(npm get cache)-civcrm"
-
-      - uses: actions/cache@v4
-        id: npm-cache
-        with:
-          path: ${{ steps.npm-cache-dir-path.outputs.dir }}
-          key: npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            npm-
-      - run: npm ci
 
       - uses: ruby/setup-ruby@v1
         with:
