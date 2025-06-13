@@ -32,11 +32,11 @@ jobs:
       DATABASE_HOST: localhost
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -44,7 +44,7 @@ jobs:
         id: npm-cache-dir-path
         run: echo "::set-output name=dir::$(npm get cache)-civcrm"
 
-      - uses: actions/cache@v2.0.0
+      - uses: actions/cache@v4
         id: npm-cache
         with:
           path: ${{ steps.npm-cache-dir-path.outputs.dir }}
@@ -71,9 +71,9 @@ jobs:
           CODECOV: 1
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
 
-      - uses: actions/upload-artifact@v2-preview
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: screenshots
