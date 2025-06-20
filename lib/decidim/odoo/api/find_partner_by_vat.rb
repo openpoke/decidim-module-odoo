@@ -5,7 +5,7 @@ module Decidim
     module Api
       class FindPartnerByVat < Base::BaseQuery
         def initialize(vat)
-          @request = Base::Request.get("partner", params: { vat: vat })
+          @request = Base::Request.get("partner", params: { vat: })
 
           store_result
         end
