@@ -33,7 +33,7 @@ module Decidim
         end
 
         context "when the user has identity" do
-          let!(:identity) { create(:identity, user: user, provider: Decidim::Odoo::OMNIAUTH_PROVIDER_NAME) }
+          let!(:identity) { create(:identity, user:, provider: Decidim::Odoo::OMNIAUTH_PROVIDER_NAME) }
 
           context "when the sync runs successfully" do
             it "writes an info log" do

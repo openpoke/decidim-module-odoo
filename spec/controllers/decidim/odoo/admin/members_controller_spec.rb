@@ -5,12 +5,12 @@ require "spec_helper"
 module Decidim
   module Odoo
     module Admin
-      describe MembersController, type: :controller do
+      describe MembersController do
         routes { Decidim::Odoo::AdminEngine.routes }
 
         let(:organization) { create :organization }
-        let(:user) { create(:user, :admin, :confirmed, organization: organization) }
-        let(:odoo_users) { create_list(:odoo_user, 20, organization: organization) }
+        let(:user) { create(:user, :admin, :confirmed, organization:) }
+        let(:odoo_users) { create_list(:odoo_user, 20, organization:) }
 
         before do
           request.env["decidim.current_organization"] = organization

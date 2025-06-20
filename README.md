@@ -1,4 +1,5 @@
-# Decidim::Odoo
+Decidim Odoo integration module
+==================================
 
 [![Gem Version](https://img.shields.io/gem/v/decidim-odoo.svg)](https://badge.fury.io/rb/decidim-odoo)
 [![[CI] Lint](https://github.com/Platoniq/decidim-module-odoo/actions/workflows/lint.yml/badge.svg)](https://github.com/Platoniq/decidim-module-odoo/actions/workflows/lint.yml)
@@ -38,29 +39,34 @@ end
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add into the `Gemfile`
 
 ```ruby
-gem "decidim-odoo", "~> 0.2.0"
+gem "decidim-odoo", github: "openpoke/decidim-module-odoo"
 ```
 
-And then execute:
+Install dependencies:
 
-```bash
+```
 bundle
+bin/rails decidim:upgrade
+bin/rails db:migrate
 ```
 
-Install (and run) migrations:
+> **EXPERTS ONLY**
+>
+> Under the hood, when running `bundle exec rails decidim:upgrade` the `decidim-odoo` gem will run the following two tasks (that can also be run manually if you consider):
+>
+> ```bash
+> bin/rails decidim_odoo:install:migrations
+> ```
 
-```
-bundle exec rails decidim_odoo:install:migrations
-bundle exec rails db:migrate
-```
 
 Depending on your Decidim version, choose the corresponding version to ensure compatibility:
 
 | Version | Compatible decidim versions |
 |---------|-----------------------------|
+| 0.4.x   | v0.29.x                     |
 | 0.2.x   | v0.27.x                     |
 | 0.1.x   | v0.25.x, v0.26.x            |
 

@@ -8,8 +8,8 @@ class CreateDecidimOdooUsers < ActiveRecord::Migration[6.0]
 
       t.integer :odoo_user_id
       t.string :ref
-      t.boolean :coop_candidate, default: false
-      t.boolean :member, default: false
+      t.boolean :coop_candidate, null: false, default: false
+      t.boolean :member, null: false, default: false
 
       t.timestamps
 

@@ -21,8 +21,8 @@ module Decidim
       describe "perform" do
         let(:organization) { create :organization }
         let(:other_organization) { create :organization }
-        let!(:odoo_user) { create :odoo_user, organization: organization }
-        let!(:other_odoo_user) { create :odoo_user, organization: organization }
+        let!(:odoo_user) { create :odoo_user, organization: }
+        let!(:other_odoo_user) { create :odoo_user, organization: }
         let!(:odoo_user_from_other_org) { create :odoo_user, organization: other_organization }
 
         before do

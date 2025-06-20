@@ -4,7 +4,7 @@ require "decidim/odoo/test/shared_contexts"
 
 describe OmniAuth::Strategies::OdooKeycloak do
   subject do
-    described_class.new({}, client_id, client_secret, client_options: client_options).tap do |strategy|
+    described_class.new({}, client_id, client_secret, client_options:).tap do |strategy|
       allow(strategy).to receive(:request).and_return(request)
       allow(strategy).to receive(:session).and_return([])
     end
@@ -21,7 +21,7 @@ describe OmniAuth::Strategies::OdooKeycloak do
   let(:email) { Faker::Internet.email }
   let(:name) { Faker::Name.name }
 
-  let(:odoo_info) { { id: id, ref: ref, vat: vat, name: name, email: email } }
+  let(:odoo_info) { { id:, ref:, vat:, name:, email: } }
 
   describe "client options" do
     it "has correct name" do

@@ -32,7 +32,7 @@ module Decidim
       attr_reader :user, :odoo_user
 
       def create_user!
-        @odoo_user = User.find_or_create_by(user: user, organization: user.organization)
+        @odoo_user = User.find_or_create_by(user:, organization: user.organization)
         @odoo_user.odoo_user_id = odoo_info[:id]
         @odoo_user.ref = odoo_info[:ref]
         @odoo_user.coop_candidate = odoo_info[:coop_candidate]

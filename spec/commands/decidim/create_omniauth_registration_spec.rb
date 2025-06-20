@@ -64,7 +64,7 @@ module Decidim
       end
 
       it "notifies about registration with oauth data" do
-        user = create(:user, email: email, organization: organization)
+        user = create(:user, email:, organization:)
         identity = Decidim::Identity.new(id: 1234)
         allow(command).to receive(:create_identity).and_return(identity)
 
@@ -74,9 +74,9 @@ module Decidim
             "decidim.user.omniauth_registration",
             user_id: user.id,
             identity_id: 1234,
-            provider: provider,
-            uid: uid,
-            email: email,
+            provider:,
+            uid:,
+            email:,
             name: "Odoo User",
             nickname: "odoo_user",
             avatar_url: nil,
@@ -86,8 +86,8 @@ module Decidim
       end
 
       context "when identity already exists" do
-        let!(:user) { create(:user, email: email, organization: organization) }
-        let!(:identity) { create(:identity, provider: provider, uid: uid, user: user) }
+        let!(:user) { create(:user, email:, organization:) }
+        let!(:identity) { create(:identity, provider:, uid:, user:) }
 
         it "notifies about registration with existing identity" do
           expect(ActiveSupport::Notifications)
@@ -96,9 +96,9 @@ module Decidim
               "decidim.user.omniauth_registration",
               user_id: user.id,
               identity_id: identity.id,
-              provider: provider,
-              uid: uid,
-              email: email,
+              provider:,
+              uid:,
+              email:,
               name: "Odoo User",
               nickname: "odoo_user",
               avatar_url: nil,
