@@ -10,6 +10,9 @@ module Decidim
 
       config.to_prepare do
         Decidim::User.include(Decidim::Odoo::UserOverride)
+        # omniauth only trigger notifications when a new user is registered
+        # this adds a notification too when user logs in
+        Decidim::CreateOmniauthRegistration.include(Decidim::Odoo::CreateOmniauthRegistrationOverride)
       end
 
       initializer "decidim_odoo.omniauth" do

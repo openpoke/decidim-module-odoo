@@ -17,6 +17,7 @@ gem "decidim-odoo", path: "."
 
 gem "bootsnap", "~> 1.4"
 gem "faker", "~> 2.14"
+gem "uri", "~> 0.13.0" # URI 1.0 does not work well with Decidim 0.27
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
