@@ -15,8 +15,8 @@ module Decidim
 
     config_accessor :api do
       {
-        base_url: ENV["ODOO_API_BASE_URL"].presence,
-        api_key: ENV["ODOO_API_API_KEY"].presence
+        base_url: ENV.fetch("ODOO_API_BASE_URL", nil),
+        api_key: ENV.fetch("ODOO_API_API_KEY", nil)
       }
     end
 
@@ -25,11 +25,11 @@ module Decidim
         enabled: ENV["OMNIAUTH_ODOO_KEYCLOAK_CLIENT_ID"].present?,
         client_id: ENV["OMNIAUTH_ODOO_KEYCLOAK_CLIENT_ID"].presence,
         client_secret: ENV["OMNIAUTH_ODOO_KEYCLOAK_CLIENT_SECRET"].presence,
+        site: ENV["OMNIAUTH_ODOO_KEYCLOAK_SITE"].presence,
         client_options: {
-          site: ENV["OMNIAUTH_ODOO_KEYCLOAK_SITE"].presence,
-          realm: ENV["OMNIAUTH_ODOO_KEYCLOAK_REALM"].presence
+          realm: ENV.fetch("OMNIAUTH_ODOO_KEYCLOAK_REALM", "opencell")
         },
-        icon_path: ENV["OMNIAUTH_ODOO_KEYCLOAK_ICON_PATH"].presence || "media/images/odoo_logo.svg"
+        icon_path: ENV["OMNIAUTH_ODOO_KEYCLOAK_ICON_PATH"].presence || "media/images/odoo_logo.png"
       }
     end
 

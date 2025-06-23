@@ -19,7 +19,6 @@ end
 desc "Generates a dummy app for testing"
 task test_app: "decidim:generate_external_test_app" do
   ENV["RAILS_ENV"] = "test"
-  Decidim::Odoo::Generators::InstallGenerator.start
   install_module("spec/decidim_dummy_app")
 end
 
@@ -37,7 +36,6 @@ task :development_app do
     )
   end
 
-  Decidim::Odoo::Generators::InstallGenerator.start
   install_module("development_app")
   seed_db("development_app")
 end

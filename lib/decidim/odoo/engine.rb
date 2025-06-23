@@ -15,11 +15,28 @@ module Decidim
         Decidim::CreateOmniauthRegistration.include(Decidim::Odoo::CreateOmniauthRegistrationOverride)
       end
 
+      # controllers and helpers overrides
+      initializer "decidim_odoo.overrides", after: "decidim.action_controller" do
+        config.to_prepare do
+          Decidim::Devise::SessionsController.include(Decidim::Odoo::NeedsOdooSnippets)
+          Decidim::ApplicationController.include(Decidim::Odoo::NeedsOdooSnippets)
+        end
+      end
+
       initializer "decidim_odoo.omniauth" do
-        next unless Decidim::Odoo.keycloak_omniauth && Decidim::Odoo.keycloak_omniauth[:client_id]
+        next unless Decidim::Odoo.keycloak_omniauth && Decidim::Odoo.keycloak_omniauth[:enabled].present?
+
+        # Decidim use the secrets configuration to decide whether to show the omniauth provider
+        Rails.application.secrets[:omniauth][Decidim::Odoo::OMNIAUTH_PROVIDER_NAME.to_sym] = Decidim::Odoo.keycloak_omniauth
+        # ensure external icon is available to avoid break the aplication (see the implementati0on of omniauth_helper.rb/oauth_icon)
+        Decidim::Odoo.keycloak_omniauth[:icon_path] = "media/images/odoo_logo.png" if Decidim::Odoo.keycloak_omniauth[:icon_path].blank?
 
         Rails.application.config.middleware.use OmniAuth::Builder do
-          provider :odoo_keycloak, Decidim::Odoo.keycloak_omniauth[:client_id], Decidim::Odoo.keycloak_omniauth[:client_secret],
+          provider :odoo_keycloak,
+                   Decidim::Odoo.keycloak_omniauth[:client_id],
+                   Decidim::Odoo.keycloak_omniauth[:client_secret],
+                   site: Decidim::Odoo.keycloak_omniauth[:site],
+                   icon_path: Decidim::Odoo.keycloak_omniauth[:icon_path],
                    client_options: Decidim::Odoo.keycloak_omniauth[:client_options]
         end
       end
