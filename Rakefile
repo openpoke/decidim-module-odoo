@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "decidim/dev/common_rake"
-require "generators/decidim/odoo/install_generator"
 
 def install_module(path)
   Dir.chdir(path) do
