@@ -34,7 +34,7 @@ module Decidim
           menu.add_item :odoo,
                         "Odoo",
                         decidim_odoo_admin.members_path,
-                        icon_name: "people",
+                        icon_name: "group-line",
                         position: 5.75,
                         active: is_active_link?(decidim_odoo_admin.members_path, :inclusive),
                         if: defined?(current_user) && current_user&.read_attribute("admin")

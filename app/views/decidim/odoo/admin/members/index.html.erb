@@ -1,12 +1,12 @@
 <div class="card">
-  <div class="card-divider">
-    <h2 class="card-title">
+  <div class="item_show__header item_show__header--with-action-options">
+    <h2 class="item_show__header-title">
       <%= t(".title") %>
-      <%= link_to t(".sync_all"), decidim_odoo_admin.sync_members_path, class: "button tiny button--title" %>
+      <%= link_to t(".sync_all"), decidim_odoo_admin.sync_members_path, class: "button button__sm button__secondary" %>
     </h2>
   </div>
   <%= admin_filter_selector %>
-  <div class="card-section">
+  <div class="table-scroll">
     <% if @odoo_users.any? %>
       <table class="table-list odoo-groups">
         <thead>

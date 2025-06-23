@@ -17,7 +17,7 @@ describe "Admin panel" do
       expect(page).to have_content("Odoo")
     end
 
-    click_link "Odoo"
+    click_on "Odoo"
 
     expect(page).to have_content("Odoo Members")
   end
@@ -68,7 +68,7 @@ describe "Admin panel" do
           first("a.action-icon--show-email").click
           within("#show-email-modal") do
             expect(page).to have_content("hidden")
-            find("button", text: "Show").click
+            click_on "Show"
             sleep(1)
             expect(page).to have_no_content("hidden")
             expect(page).to have_content(odoo_users.last.user.email)
