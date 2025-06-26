@@ -10,6 +10,7 @@ on:
 env:
   RUBY_VERSION: 3.2.8
   NODE_VERSION: 18.17.1
+  OMNIAUTH_ODOO_KEYCLOAK_CLIENT_ID: ExampleClientId
 
 jobs:
   test-report:
