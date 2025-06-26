@@ -37,11 +37,11 @@
             <td class="<%= boolean_class(odoo_user.member) %>"><%= content_tag :strong, humanize_boolean(odoo_user.member) %></td>
             <td class="<%= last_sync_class(odoo_user.updated_at) %>"><%= l(odoo_user.updated_at, format: :decidim_short) %></td>
             <td class="table-list__actions">
-              <%= icon_link_to "reload", decidim_odoo_admin.sync_members_path(id: odoo_user.id), t(".sync"), class: "action-icon--reload" %>
+              <%= icon_link_to "refresh-line", decidim_odoo_admin.sync_members_path(id: odoo_user.id), t(".sync"), class: "action-icon--reload" %>
               <% if allowed_to? :show_email, :user, user: odoo_user.user %>
-                <%= icon_link_to "envelope-open", decidim_admin.show_email_officialization_path(user_id: odoo_user.user.id), t(".show_email"), class: "action-icon action-icon--show-email", data: { full_name: odoo_user.user.name, toggle: "show-email-modal" } %>
+                <%= icon_link_to "mail-open-line", decidim_admin.show_email_officialization_path(user_id: odoo_user.user.id), t(".show_email"), class: "action-icon action-icon--show-email", data: { full_name: odoo_user.user.name, toggle: "show-email-modal" } %>
               <% end %>
-              <%= icon_link_to "envelope-closed", current_or_new_conversation_path_with(odoo_user.user), t(".contact"), class:"action-icon--new" %>
+              <%= icon_link_to "mail-add-line", current_or_new_conversation_path_with(odoo_user.user), t(".contact"), class:"action-icon--new" %>
             </td>
           </tr>
         <% end %>

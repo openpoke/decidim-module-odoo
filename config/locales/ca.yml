@@ -39,3 +39,8 @@ ca:
             success: La sincronització ha començat. Pot trigar uns quants minuts
       errors:
         not_found: L'usuari d'Odoo no s'ha trobat
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            odoo_member: Comproveu la vostra condició de soci a Odoo

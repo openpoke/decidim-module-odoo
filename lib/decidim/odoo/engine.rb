@@ -35,9 +35,10 @@ module Decidim
           provider :odoo_keycloak,
                    Decidim::Odoo.keycloak_omniauth[:client_id],
                    Decidim::Odoo.keycloak_omniauth[:client_secret],
-                   site: Decidim::Odoo.keycloak_omniauth[:site],
-                   icon_path: Decidim::Odoo.keycloak_omniauth[:icon_path],
-                   client_options: Decidim::Odoo.keycloak_omniauth[:client_options]
+                   client_options: {
+                     site: Decidim::Odoo.keycloak_omniauth[:site],
+                     realm: Decidim::Odoo.keycloak_omniauth[:realm]
+                   }
         end
       end
 

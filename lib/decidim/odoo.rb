@@ -26,10 +26,8 @@ module Decidim
         client_id: ENV["OMNIAUTH_ODOO_KEYCLOAK_CLIENT_ID"].presence,
         client_secret: ENV["OMNIAUTH_ODOO_KEYCLOAK_CLIENT_SECRET"].presence,
         site: ENV["OMNIAUTH_ODOO_KEYCLOAK_SITE"].presence,
-        client_options: {
-          realm: ENV.fetch("OMNIAUTH_ODOO_KEYCLOAK_REALM", "opencell")
-        },
-        icon_path: ENV["OMNIAUTH_ODOO_KEYCLOAK_ICON_PATH"].presence || "media/images/odoo_logo.png"
+        realm: ENV.fetch("OMNIAUTH_ODOO_KEYCLOAK_REALM", "opencell"),
+        icon_path: ENV.fetch("OMNIAUTH_ODOO_KEYCLOAK_ICON_PATH", "media/images/odoo_logo.png")
       }
     end
 

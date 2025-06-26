@@ -11,9 +11,9 @@ module OmniAuth
 
       info do
         {
-          nickname: odoo_info[:vat],
-          name: odoo_info[:name],
-          email: odoo_info[:email]
+          nickname: odoo_info[:vat].presence || raw_info["preferred_username"],
+          name: odoo_info[:name].presence || raw_info["name"],
+          email: odoo_info[:email].presence || raw_info["email"]
         }
       end
 
