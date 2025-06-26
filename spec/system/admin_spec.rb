@@ -13,7 +13,7 @@ describe "Admin panel" do
   end
 
   it "renders the expected menu" do
-    within ".main-nav" do
+    within ".layout-nav" do
       expect(page).to have_content("Odoo")
     end
 
@@ -39,7 +39,7 @@ describe "Admin panel" do
       let!(:odoo_user_one) { create :odoo_user, user: user_one, member: true, created_at: two_days_ago, updated_at: two_days_ago }
       let!(:odoo_user_two) { create :odoo_user, user: user_two, coop_candidate: true, created_at: two_weeks_ago, updated_at: two_weeks_ago }
       let!(:odoo_users) do
-        create_list(:odoo_user, 20) do |odoo_user|
+        create_list(:odoo_user, 26) do |odoo_user|
           odoo_user.user = create(:user, :confirmed, organization:)
           odoo_user.organization = organization
           odoo_user.save!
@@ -50,16 +50,15 @@ describe "Admin panel" do
         visit decidim_odoo_admin.members_path
       end
 
-      it "shows up to 15 rows" do
+      it "shows up to 25 rows" do
         within ".odoo-groups tbody" do
-          expect(page).to have_css("tr", count: 15)
+          expect(page).to have_css("tr", count: 25)
         end
       end
 
       it "shows more than one page" do
-        within ".pagination" do
+        within ".table-scroll nav" do
           expect(page).to have_content("Next")
-          expect(page).to have_content("Last")
         end
       end
 
@@ -119,7 +118,7 @@ describe "Admin panel" do
         end
 
         it "shows the selected filter" do
-          within ".filter-status" do
+          within "[data-applied-filters-tags]" do
             expect(page).to have_content("Is coop candidate: Yes")
           end
         end
@@ -145,7 +144,7 @@ describe "Admin panel" do
         end
 
         it "shows the selected filter" do
-          within ".filter-status" do
+          within "[data-applied-filters-tags]" do
             expect(page).to have_content("Is member: Yes")
           end
         end
@@ -175,7 +174,7 @@ describe "Admin panel" do
         end
 
         it "shows the selected filter" do
-          within ".filter-status" do
+          within "[data-applied-filters-tags]" do
             expect(page).to have_content("Is member: Yes")
             expect(page).to have_content("Is coop candidate: Yes")
           end

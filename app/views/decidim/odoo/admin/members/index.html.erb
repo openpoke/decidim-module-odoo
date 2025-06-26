@@ -39,7 +39,7 @@
             <td class="table-list__actions">
               <%= icon_link_to "refresh-line", decidim_odoo_admin.sync_members_path(id: odoo_user.id), t(".sync"), class: "action-icon--reload" %>
               <% if allowed_to? :show_email, :user, user: odoo_user.user %>
-                <%= icon_link_to "mail-open-line", decidim_admin.show_email_officialization_path(user_id: odoo_user.user.id), t(".show_email"), class: "action-icon action-icon--show-email", data: { full_name: odoo_user.user.name, toggle: "show-email-modal" } %>
+                <%= icon_link_to "mail-open-line", decidim_admin.show_email_officialization_path(user_id: odoo_user.user.id), t(".show_email"), class: "action-icon action-icon--show-email", data: { full_name: odoo_user.user.name, dialog_open: "show-email-modal" } %>
               <% end %>
               <%= icon_link_to "mail-add-line", current_or_new_conversation_path_with(odoo_user.user), t(".contact"), class:"action-icon--new" %>
             </td>

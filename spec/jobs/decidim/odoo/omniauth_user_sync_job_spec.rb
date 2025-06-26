@@ -43,11 +43,7 @@ module Decidim
           end
 
           context "when the sync fails" do
-            before do
-              # rubocop: disable RSpec/AnyInstance
-              allow_any_instance_of(Decidim::Odoo::SyncUser).to receive(:update_user!).and_raise
-              # rubocop: enable RSpec/AnyInstance
-            end
+            let(:data) { { "foo" => "bar" } }
 
             it "writes an error log" do
               subject.perform_now(params)

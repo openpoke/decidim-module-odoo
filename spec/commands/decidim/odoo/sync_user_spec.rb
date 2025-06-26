@@ -10,7 +10,7 @@ module Decidim
 
       let(:user) { create :user }
       let(:identity) { create(:identity, user:, provider: Decidim::Odoo::OMNIAUTH_PROVIDER_NAME) }
-      let(:odoo_info) { { id: ::Faker::Number.number(digits: 4), ref: identity.uid, vat: Decidim::Odoo::Faker.vat, name: "New name", email: user.email } }
+      let(:odoo_info) { { id: ::Faker::Number.number(digits: 4), ref: identity.uid, vat: Decidim::Odoo::Faker.vat, name: "New name", email: user.email, coop_candidate: true, member: true } }
 
       include_context "with stubs example api"
 

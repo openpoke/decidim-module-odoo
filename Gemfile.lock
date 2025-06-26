@@ -846,6 +846,7 @@ DEPENDENCIES
   decidim (= 0.29.4)
   decidim-dev (= 0.29.4)
   decidim-odoo!
+  faker
   letter_opener_web
   web-console
 
