@@ -36,6 +36,9 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Install GraphicsMagick
+        run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf imagemagick
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
