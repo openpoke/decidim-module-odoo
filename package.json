@@ -1,0 +1,43 @@
+{
+  "name": "decidim-module-odoo",
+  "version": "0.8",
+  "description": "A Odoo integration with Decidim",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint -c .eslintrc.json --ext .js app/packs/",
+    "lint-fix": "eslint -c .eslintrc.json --ext .js app/packs/ --fix",
+    "stylelint": "stylelint **/*.scss",
+    "stylelint-fix": "stylelint **/*.scss --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Openpoke/decidim-module-odoo.git"
+  },
+  "keywords": [
+    "decidim"
+  ],
+  "author": "ivan@pokecode.net",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Openpoke/decidim-module-odoo/issues"
+  },
+  "homepage": "https://github.com/Openpoke/decidim-module-odoo#readme",
+  "stylelint": {
+    "extends": "@decidim/stylelint-config"
+  },
+  "engines": {
+    "node": "18.17.1",
+    "npm": ">=9.6.7"
+  },
+  "prettier": "@decidim/prettier-config",
+  "devDependencies": {
+    "@decidim/dev": "0.29.4",
+    "@decidim/eslint-config": "0.29.4",
+    "@decidim/stylelint-config": "0.29.4",
+    "@decidim/prettier-config": "^0.29.4",
+    "postcss-scss": "^4.0.9",
+    "sass-embedded": "~1.63.6"
+  },
+  "dependencies": {
+  }
+}

@@ -10,7 +10,7 @@ module Decidim
 
         def metadata
           super.merge(
-            uid: uid,
+            uid:,
             odoo_user_ref: odoo_user&.ref
           )
         end
@@ -30,7 +30,7 @@ module Decidim
         end
 
         def odoo_user
-          @odoo_user ||= Decidim::Odoo::User.find_by(user: user)
+          @odoo_user ||= Decidim::Odoo::User.find_by(user:)
         end
 
         def odoo_api_user

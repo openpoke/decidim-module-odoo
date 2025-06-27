@@ -2,9 +2,9 @@
 
 require "spec_helper"
 
-describe "Admin panel", type: :system do
+describe "Admin panel" do
   let(:organization) { create :organization }
-  let(:user) { create(:user, :admin, :confirmed, organization: organization) }
+  let(:user) { create(:user, :admin, :confirmed, organization:) }
 
   before do
     switch_to_host(organization.host)
@@ -13,11 +13,11 @@ describe "Admin panel", type: :system do
   end
 
   it "renders the expected menu" do
-    within ".main-nav" do
+    within ".layout-nav" do
       expect(page).to have_content("Odoo")
     end
 
-    click_link "Odoo"
+    click_on "Odoo"
 
     expect(page).to have_content("Odoo Members")
   end
@@ -34,13 +34,13 @@ describe "Admin panel", type: :system do
     context "when there are multiple users users" do
       let(:two_days_ago) { 2.days.ago }
       let(:two_weeks_ago) { 2.weeks.ago }
-      let(:user_one) { create(:user, :confirmed, organization: organization, nickname: "user_one") }
-      let(:user_two) { create(:user, :confirmed, organization: organization, nickname: "user_two") }
+      let(:user_one) { create(:user, :confirmed, organization:, nickname: "user_one") }
+      let(:user_two) { create(:user, :confirmed, organization:, nickname: "user_two") }
       let!(:odoo_user_one) { create :odoo_user, user: user_one, member: true, created_at: two_days_ago, updated_at: two_days_ago }
       let!(:odoo_user_two) { create :odoo_user, user: user_two, coop_candidate: true, created_at: two_weeks_ago, updated_at: two_weeks_ago }
       let!(:odoo_users) do
-        create_list(:odoo_user, 20) do |odoo_user|
-          odoo_user.user = create(:user, :confirmed, organization: organization)
+        create_list(:odoo_user, 26) do |odoo_user|
+          odoo_user.user = create(:user, :confirmed, organization:)
           odoo_user.organization = organization
           odoo_user.save!
         end
@@ -50,16 +50,15 @@ describe "Admin panel", type: :system do
         visit decidim_odoo_admin.members_path
       end
 
-      it "shows up to 15 rows" do
+      it "shows up to 25 rows" do
         within ".odoo-groups tbody" do
-          expect(page).to have_selector("tr", count: 15)
+          expect(page).to have_css("tr", count: 25)
         end
       end
 
       it "shows more than one page" do
-        within ".pagination" do
+        within ".table-scroll nav" do
           expect(page).to have_content("Next")
-          expect(page).to have_content("Last")
         end
       end
 
@@ -68,9 +67,9 @@ describe "Admin panel", type: :system do
           first("a.action-icon--show-email").click
           within("#show-email-modal") do
             expect(page).to have_content("hidden")
-            find("button", text: "Show").click
+            click_on "Show"
             sleep(1)
-            expect(page).not_to have_content("hidden")
+            expect(page).to have_no_content("hidden")
             expect(page).to have_content(odoo_users.last.user.email)
           end
         end
@@ -93,7 +92,7 @@ describe "Admin panel", type: :system do
 
         it "filters the results" do
           within ".odoo-groups tbody" do
-            expect(page).to have_selector("tr", count: 1)
+            expect(page).to have_css("tr", count: 1)
           end
         end
       end
@@ -119,19 +118,19 @@ describe "Admin panel", type: :system do
         end
 
         it "shows the selected filter" do
-          within ".filter-status" do
+          within "[data-applied-filters-tags]" do
             expect(page).to have_content("Is coop candidate: Yes")
           end
         end
 
         it "filters the results" do
           within ".odoo-groups tbody" do
-            expect(page).to have_selector("tr", count: 1)
+            expect(page).to have_css("tr", count: 1)
 
             within "tr" do
-              expect(page).to have_selector("td.success", text: "Yes")
-              expect(page).to have_selector("td.alert", text: "No")
-              expect(page).to have_selector("td.alert", text: odoo_user_two.updated_at.year)
+              expect(page).to have_css("td.success", text: "Yes")
+              expect(page).to have_css("td.alert", text: "No")
+              expect(page).to have_css("td.alert", text: odoo_user_two.updated_at.year)
             end
           end
         end
@@ -145,19 +144,19 @@ describe "Admin panel", type: :system do
         end
 
         it "shows the selected filter" do
-          within ".filter-status" do
+          within "[data-applied-filters-tags]" do
             expect(page).to have_content("Is member: Yes")
           end
         end
 
         it "filters the results" do
           within ".odoo-groups tbody" do
-            expect(page).to have_selector("tr", count: 1)
+            expect(page).to have_css("tr", count: 1)
 
             within "tr" do
-              expect(page).to have_selector("td.success", text: "Yes")
-              expect(page).to have_selector("td.alert", text: "No")
-              expect(page).to have_selector("td.warning", text: odoo_user_one.updated_at.year)
+              expect(page).to have_css("td.success", text: "Yes")
+              expect(page).to have_css("td.alert", text: "No")
+              expect(page).to have_css("td.warning", text: odoo_user_one.updated_at.year)
             end
           end
         end
@@ -175,7 +174,7 @@ describe "Admin panel", type: :system do
         end
 
         it "shows the selected filter" do
-          within ".filter-status" do
+          within "[data-applied-filters-tags]" do
             expect(page).to have_content("Is member: Yes")
             expect(page).to have_content("Is coop candidate: Yes")
           end

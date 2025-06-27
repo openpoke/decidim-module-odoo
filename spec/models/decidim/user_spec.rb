@@ -11,13 +11,13 @@ module Decidim
       subject { user.odoo_identity? }
 
       context "when user has a odoo-provided identity" do
-        let!(:identity) { create(:identity, user: user, provider: Decidim::Odoo::OMNIAUTH_PROVIDER_NAME) }
+        let!(:identity) { create(:identity, user:, provider: Decidim::Odoo::OMNIAUTH_PROVIDER_NAME) }
 
         it { is_expected.to be_truthy }
       end
 
       context "when user doesn't have a odoo-provided identity" do
-        let!(:identity) { create(:identity, user: user, provider: "other") }
+        let!(:identity) { create(:identity, user:, provider: "other") }
 
         it { is_expected.to be_falsey }
       end
@@ -31,13 +31,13 @@ module Decidim
       subject { user.odoo_identity }
 
       context "when user has a odoo-provided identity" do
-        let!(:identity) { create(:identity, user: user, provider: Decidim::Odoo::OMNIAUTH_PROVIDER_NAME) }
+        let!(:identity) { create(:identity, user:, provider: Decidim::Odoo::OMNIAUTH_PROVIDER_NAME) }
 
         it { is_expected.to be_a Decidim::Identity }
       end
 
       context "when user doesn't have a odoo-provided identity" do
-        let!(:identity) { create(:identity, user: user, provider: "other") }
+        let!(:identity) { create(:identity, user:, provider: "other") }
 
         it { is_expected.to be_nil }
       end
@@ -51,7 +51,7 @@ module Decidim
       subject { user.odoo_user }
 
       context "when user has a related odoo user" do
-        let!(:odoo_user) { create(:odoo_user, user: user) }
+        let!(:odoo_user) { create(:odoo_user, user:) }
 
         it { is_expected.to be_a Decidim::Odoo::User }
       end

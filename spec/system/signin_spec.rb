@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "Login page", type: :system do
+describe "Login page" do
   let!(:organization) { create :organization }
 
   before do
@@ -28,7 +28,7 @@ describe "Login page", type: :system do
     end
 
     it "has button" do
-      expect(page).to have_content "Sign in with Odoo"
+      expect(page).to have_content "Odoo"
     end
   end
 
@@ -40,7 +40,7 @@ describe "Login page", type: :system do
     end
 
     it "has no button" do
-      expect(page).not_to have_content "Sign in with Odoo"
+      expect(page).to have_no_content "Odoo"
     end
   end
 end

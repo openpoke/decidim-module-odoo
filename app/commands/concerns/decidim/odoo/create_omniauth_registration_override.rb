@@ -13,7 +13,6 @@ module Decidim
             if (@identity = existing_identity)
               @user = existing_identity.user
               verify_user_confirmed(@user)
-
               trigger_omniauth_registration
               return broadcast(:ok, @user)
             end

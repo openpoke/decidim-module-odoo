@@ -1,0 +1,17 @@
+/* Decidim has a bug when using external_icon method that automatically adds a display:none inline css */
+
+.login__omniauth-button {
+  &.button--odoo {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    background-color: var(--primary);
+    color: white;
+
+    img.icon.external-icon {
+      height: 36px;
+      width: auto;
+      padding: 2px;
+      display: inline-block !important;
+    }
+  }
+}

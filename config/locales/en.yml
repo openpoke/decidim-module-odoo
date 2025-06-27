@@ -39,3 +39,8 @@ en:
             success: The synchronization has started. It may take a few minutes
       errors:
         not_found: Odoo user not found
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            odoo_member: Check your Odoo membership

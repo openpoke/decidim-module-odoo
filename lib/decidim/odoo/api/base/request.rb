@@ -13,7 +13,7 @@ module Decidim
 
           %w(get post).each do |method|
             define_singleton_method(method) do |path, params: {}, headers: {}, verify_ssl: true|
-              instance = Request.new(verify_ssl: verify_ssl)
+              instance = Request.new(verify_ssl:)
               response = instance.connection.public_send(method, instance.url(path)) do |request|
                 request.params = instance.base_params.merge(params)
                 request.headers = instance.base_headers.merge(headers)

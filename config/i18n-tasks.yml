@@ -2,7 +2,13 @@
 
 base_locale: en
 locales: [en]
+
+data:
+  external:
+    - "<%= %x[bundle info decidim-admin --path].chomp %>/config/locales/%{locale}.yml"
+
 ignore_unused:
   - decidim.admin.filters.*
   - decidim.authorization_handlers.odoo_member.*
+  - decidim.verifications.authorizations.first_login.actions.odoo_member
   - decidim.odoo.errors.*
