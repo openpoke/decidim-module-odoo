@@ -10,6 +10,7 @@ namespace :decidim do
       users = Decidim::User.where("nickname ~ '#{vat_regex}'")
 
       puts "There are a total of #{users.count} users that are going to be treated"
+      puts "Dry run:" if dry_run
 
       count = 0
       users.each do |user|
