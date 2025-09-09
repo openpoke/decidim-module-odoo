@@ -3,10 +3,7 @@
 require "decidim/dev"
 require "simplecov"
 
-if ENV["CODECOV"]
-  require "codecov"
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
-end
+SimpleCov.start "rails" if ENV["SIMPLECOV"]
 
 ENV["ENGINE_ROOT"] = File.dirname(__dir__)
 
