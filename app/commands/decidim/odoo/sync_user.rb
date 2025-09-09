@@ -44,7 +44,7 @@ module Decidim
       end
 
       def update_user!
-        user.nickname = Decidim::UserBaseEntity.nicknamize(odoo_info[:name], organization: user.organization) if odoo_info[:name].present?
+        user.nickname = Decidim::UserBaseEntity.nicknamize(odoo_info[:name], organization: user.decidim_organization_id)
         user.name = odoo_info[:name] if odoo_info[:name].present?
         user.extended_data.merge!(
           "odoo_info" => {
