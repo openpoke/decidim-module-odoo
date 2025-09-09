@@ -59,7 +59,7 @@ jobs:
       - run: bundle exec rspec
         name: RSpec
         env:
-          CODECOV: 1
+          SIMPLECOV: 1
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
