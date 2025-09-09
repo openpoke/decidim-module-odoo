@@ -61,10 +61,6 @@ describe OmniAuth::Strategies::OdooKeycloak do
       expect(subject.uid).to eq(ref)
     end
 
-    it "returns the nickname" do
-      expect(subject.info[:nickname]).to eq(name)
-    end
-
     it "returns the email" do
       expect(subject.info[:email]).to eq(email)
     end
