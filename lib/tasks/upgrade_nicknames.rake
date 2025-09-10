@@ -6,7 +6,7 @@ namespace :decidim do
     task :fix_nicknames, [:dry_run] => :environment do |_t, args|
       dry_run = args[:dry_run].to_s == "dry_run"
 
-      vat_regex = '^[a-zA-Z]{2}\d{8,12}[a-zA-Z]?$'
+      vat_regex = '^[a-zA-Z]{2,3}\d{8,12}[a-zA-Z]?$'
       users = Decidim::User.where("nickname ~ '#{vat_regex}'")
 
       puts "There are a total of #{users.count} users that are going to be treated"
