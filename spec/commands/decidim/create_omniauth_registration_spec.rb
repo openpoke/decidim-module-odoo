@@ -98,8 +98,12 @@ module Decidim
             email:,
             name: "Odoo User",
             nickname: "odoo_user",
-            avatar_url: nil,
-            raw_data: {}
+            avatar_url: "http://www.example.com/foo.jpg",
+            raw_data: {},
+            tos_agreement: true,
+            accepted_tos_version: user.accepted_tos_version,
+            newsletter_notifications_at: user.newsletter_notifications_at
+
           )
         command.call
       end
@@ -120,8 +124,11 @@ module Decidim
               email:,
               name: "Odoo User",
               nickname: "odoo_user",
-              avatar_url: nil,
-              raw_data: {}
+              avatar_url: "http://www.example.com/foo.jpg",
+              raw_data: {},
+              tos_agreement: true,
+              accepted_tos_version: user.accepted_tos_version,
+              newsletter_notifications_at: user.newsletter_notifications_at
             )
           command.call
         end
