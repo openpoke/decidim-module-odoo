@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe "Login page" do
-  let!(:organization) { create :organization }
+  let!(:organization) { create(:organization) }
 
   before do
     organization.omniauth_settings = omniauth_settings.transform_values do |v|

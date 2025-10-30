@@ -19,7 +19,7 @@ module Decidim
       end
 
       describe "perform" do
-        let!(:odoo_user) { create :odoo_user }
+        let!(:odoo_user) { create(:odoo_user) }
         let(:params) { odoo_user.id }
 
         before do
@@ -31,7 +31,7 @@ module Decidim
           it_behaves_like "no authorization is created"
 
           context "when there is a previous authorization for the user" do
-            let!(:authorization) { create :authorization, name: "odoo_member", user: odoo_user.user }
+            let!(:authorization) { create(:authorization, name: "odoo_member", user: odoo_user.user) }
 
             it "removes an authorization" do
               expect { subject.perform_now(params) }.to change(Decidim::Authorization, :count).by(-1)
@@ -53,7 +53,7 @@ module Decidim
         end
 
         context "when the odoo user is member" do
-          let!(:odoo_user) { create :odoo_user, member: true }
+          let!(:odoo_user) { create(:odoo_user, member: true) }
 
           it "creates an authorization" do
             expect { subject.perform_now(params) }.to change(Decidim::Authorization, :count).by(1)
@@ -73,7 +73,7 @@ module Decidim
           end
 
           context "when there is a previous authorization for the user" do
-            let!(:authorization) { create :authorization, name: "odoo_member", user: odoo_user.user }
+            let!(:authorization) { create(:authorization, name: "odoo_member", user: odoo_user.user) }
 
             it_behaves_like "no authorization is created"
           end

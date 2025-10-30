@@ -8,7 +8,7 @@ module Decidim
     describe SyncUser do
       subject { described_class.new(user) }
 
-      let(:user) { create :user }
+      let(:user) { create(:user) }
       let(:identity) { create(:identity, user:, provider: Decidim::Odoo::OMNIAUTH_PROVIDER_NAME) }
       let(:odoo_info) { { id: ::Faker::Number.number(digits: 4), ref: identity.uid, vat: Decidim::Odoo::Faker.vat, name: "New name", email: user.email, coop_candidate: true, member: true } }
 
@@ -34,7 +34,7 @@ module Decidim
         end
 
         context "when odoo user already exists" do
-          let!(:odoo_user) { create :odoo_user, user: }
+          let!(:odoo_user) { create(:odoo_user, user:) }
 
           it "updates the updated at column" do
             sleep(1)
