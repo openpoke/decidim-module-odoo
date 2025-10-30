@@ -13,6 +13,14 @@ module Decidim
       def odoo_member?
         member || coop_candidate
       end
+
+      def self.ransackable_attributes(auth_object = nil)
+        %w(member coop_candidate user_name_or_user_nickname_or_user_email_cont)
+      end
+
+      def self.ransackable_associations(_auth_object = nil)
+        []
+      end
     end
   end
 end
