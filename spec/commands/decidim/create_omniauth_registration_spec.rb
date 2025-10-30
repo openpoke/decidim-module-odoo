@@ -11,6 +11,8 @@ module Decidim
       let(:uid) { "12345" }
       let(:oauth_signature) { OmniauthRegistrationForm.create_signature(provider, uid) }
       let(:verified_email) { email }
+      let(:tos_agreement) { true }
+      let(:nickname) { "odoo_user" }
       let(:form_params) do
         {
           "user" => {
@@ -19,8 +21,10 @@ module Decidim
             "email" => email,
             "email_verified" => true,
             "name" => "Odoo User",
-            "nickname" => "odoo_user",
-            "oauth_signature" => oauth_signature
+            "nickname" => nickname,
+            "oauth_signature" => oauth_signature,
+            "avatar_url" => "http://www.example.com/foo.jpg",
+            "tos_agreement" => tos_agreement
           }
         }
       end
@@ -32,6 +36,11 @@ module Decidim
         )
       end
       let(:command) { described_class.new(form, verified_email) }
+
+      before do
+        stub_request(:get, "http://www.example.com/foo.jpg")
+          .to_return(status: 200, body: File.read("spec/assets/avatar.jpg"), headers: { "Content-Type" => "image/jpeg" })
+      end
 
       it "broadcasts ok" do
         expect { command.call }.to broadcast(:ok)
