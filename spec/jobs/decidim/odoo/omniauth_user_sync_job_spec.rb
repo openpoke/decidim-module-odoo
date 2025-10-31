@@ -17,7 +17,7 @@ module Decidim
       include_context "with stubs example api"
 
       describe "perform" do
-        let(:user) { create :user }
+        let(:user) { create(:user) }
         let(:params) { { user_id: user.id } }
 
         before do

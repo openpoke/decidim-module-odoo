@@ -8,7 +8,7 @@ module Decidim
       describe MembersController do
         routes { Decidim::Odoo::AdminEngine.routes }
 
-        let(:organization) { create :organization }
+        let(:organization) { create(:organization) }
         let(:user) { create(:user, :admin, :confirmed, organization:) }
         let(:odoo_users) { create_list(:odoo_user, 20, organization:) }
 

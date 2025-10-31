@@ -18,7 +18,7 @@ module Decidim::Odoo
         }
       end
       let(:user) { odoo_user.user }
-      let(:odoo_user) { create :odoo_user, member: true }
+      let(:odoo_user) { create(:odoo_user, member: true) }
       let(:metadata) do
         {
           uid: odoo_user.ref,
@@ -47,13 +47,13 @@ module Decidim::Odoo
       end
 
       context "when the user is not a member" do
-        let(:odoo_user) { create :odoo_user }
+        let(:odoo_user) { create(:odoo_user) }
 
         it { is_expected.not_to be_valid }
       end
 
       context "when the user does not exist" do
-        let(:user) { create :user }
+        let(:user) { create(:user) }
 
         context "when the api user is a member" do
           it { is_expected.to be_valid }

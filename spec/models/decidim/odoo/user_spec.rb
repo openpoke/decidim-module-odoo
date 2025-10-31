@@ -5,7 +5,7 @@ require "spec_helper"
 module Decidim
   module Odoo
     describe User do
-      let!(:odoo_user) { create :odoo_user }
+      let!(:odoo_user) { create(:odoo_user) }
 
       describe "#odoo_member?" do
         context "when the user is not member neither coop candidate" do

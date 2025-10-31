@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe "Admin panel" do
-  let(:organization) { create :organization }
+  let(:organization) { create(:organization) }
   let(:user) { create(:user, :admin, :confirmed, organization:) }
 
   before do
@@ -36,8 +36,8 @@ describe "Admin panel" do
       let(:two_weeks_ago) { 2.weeks.ago }
       let(:user_one) { create(:user, :confirmed, organization:, nickname: "user_one") }
       let(:user_two) { create(:user, :confirmed, organization:, nickname: "user_two") }
-      let!(:odoo_user_one) { create :odoo_user, user: user_one, member: true, created_at: two_days_ago, updated_at: two_days_ago }
-      let!(:odoo_user_two) { create :odoo_user, user: user_two, coop_candidate: true, created_at: two_weeks_ago, updated_at: two_weeks_ago }
+      let!(:odoo_user_one) { create(:odoo_user, user: user_one, member: true, created_at: two_days_ago, updated_at: two_days_ago) }
+      let!(:odoo_user_two) { create(:odoo_user, user: user_two, coop_candidate: true, created_at: two_weeks_ago, updated_at: two_weeks_ago) }
       let!(:odoo_users) do
         create_list(:odoo_user, 26) do |odoo_user|
           odoo_user.user = create(:user, :confirmed, organization:)
