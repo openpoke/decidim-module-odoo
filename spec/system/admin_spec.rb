@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "Admin panel" do
+describe "Admin_panel" do
   let(:organization) { create(:organization) }
   let(:user) { create(:user, :admin, :confirmed, organization:) }
 
