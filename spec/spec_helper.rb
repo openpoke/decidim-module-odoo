@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 require "decidim/dev"
-require "simplecov"
-
-SimpleCov.start "rails" if ENV["SIMPLECOV"]
 
 ENV["ENGINE_ROOT"] = File.dirname(__dir__)
+ENV["NODE_ENV"] ||= "test"
 
 Decidim::Dev.dummy_app_path = File.expand_path(File.join(__dir__, "decidim_dummy_app"))
 

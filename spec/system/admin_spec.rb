@@ -113,7 +113,7 @@ describe "Admin panel" do
       context "when filtering by coop candidate" do
         before do
           find("a", text: "Filter").click
-          find("a", text: "Is coop candidate").hover
+          find("a", text: "Is coop candidate").click
           find("a", text: "Yes").click
         end
 
@@ -139,7 +139,7 @@ describe "Admin panel" do
       context "when filtering by member" do
         before do
           find("a", text: "Filter").click
-          find("a", text: "Is member").hover
+          find("a", text: "Is member").click
           find("a", text: "Yes").click
         end
 
@@ -165,11 +165,11 @@ describe "Admin panel" do
       context "when filtering by both member and coop candidate" do
         before do
           find("a", text: "Filter").click
-          find("a", text: "Is coop candidate").hover
+          find("a", text: "Is coop candidate").click
           find("a", text: "Yes").click
 
           find("a", text: "Filter").click
-          find("a", text: "Is member").hover
+          find("a", text: "Is member").click
           find("a", text: "Yes").click
         end
 

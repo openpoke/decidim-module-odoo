@@ -12,7 +12,6 @@ module Decidim
         Decidim::User.include(Decidim::Odoo::UserOverride)
         # omniauth only trigger notifications when a new user is registered
         # this adds a notification too when user logs in
-        Decidim::CreateOmniauthRegistration.include(Decidim::Odoo::CreateOmniauthRegistrationOverride)
       end
 
       # controllers and helpers overrides
@@ -27,7 +26,7 @@ module Decidim
         next unless Decidim::Odoo.keycloak_omniauth && Decidim::Odoo.keycloak_omniauth[:enabled].present?
 
         # Decidim use the secrets configuration to decide whether to show the omniauth provider
-        Rails.application.secrets[:omniauth][Decidim::Odoo::OMNIAUTH_PROVIDER_NAME.to_sym] = Decidim::Odoo.keycloak_omniauth
+        Decidim.omniauth_providers[Decidim::Odoo::OMNIAUTH_PROVIDER_NAME.to_sym] = Decidim::Odoo.keycloak_omniauth
         # ensure external icon is available to avoid break the aplication (see the implementati0on of omniauth_helper.rb/oauth_icon)
         Decidim::Odoo.keycloak_omniauth[:icon_path] = "media/images/odoo_logo.png" if Decidim::Odoo.keycloak_omniauth[:icon_path].blank?
 
