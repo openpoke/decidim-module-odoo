@@ -984,12 +984,11 @@ DEPENDENCIES
   decidim (= 0.31)
   decidim-dev (= 0.31)
   decidim-odoo!
-  faker
   letter_opener_web
   web-console
 
 RUBY VERSION
-   ruby 3.3.4p94
+  ruby 3.3.4p94
 
 BUNDLED WITH
-   2.6.6
+  4.0.4
