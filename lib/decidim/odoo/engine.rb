@@ -28,10 +28,6 @@ module Decidim
         # Decidim configuration decide whether to show the omniauth provider
         Decidim.omniauth_providers[:odoo_keycloak] = {
           enabled: true,
-          client_id: ENV.fetch("OMNIAUTH_ODOO_KEYCLOAK_CLIENT_ID", nil),
-          client_secret: ENV.fetch("OMNIAUTH_ODOO_KEYCLOAK_CLIENT_SECRET", nil),
-          site: ENV.fetch("OMNIAUTH_ODOO_KEYCLOAK_SITE", nil),
-          realm: ENV.fetch("OMNIAUTH_ODOO_KEYCLOAK_REALM", nil),
           icon_path: ENV.fetch("OMNIAUTH_ODOO_KEYCLOAK_ICON_PATH", "media/images/odoo_logo.svg")
         }
         # ensure external icon is available to avoid break the aplication (see the implementati0on of omniauth_helper.rb/oauth_icon)
