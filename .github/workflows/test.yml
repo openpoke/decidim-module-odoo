@@ -73,7 +73,7 @@ jobs:
         working-directory: ./spec/decidim_dummy_app/
         shell: "bash"
 
-      - run: bundle exec rspec
+      - run: DISABLE_SPRING=1 bundle exec rspec
         name: RSpec
         env:
           CIVICRM_CLIENT_ID: oauth2_decidim

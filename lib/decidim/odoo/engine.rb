@@ -26,7 +26,10 @@ module Decidim
         next unless Decidim::Odoo.keycloak_omniauth && Decidim::Odoo.keycloak_omniauth[:enabled].present?
 
         # Decidim use the secrets configuration to decide whether to show the omniauth provider
-        Decidim.omniauth_providers[Decidim::Odoo::OMNIAUTH_PROVIDER_NAME.to_sym] = Decidim::Odoo.keycloak_omniauth
+        Decidim.omniauth_providers[:odoo_keycloak] = {
+          enabled: true,
+          icon_path: "media/images/#{ENV.fetch("OMNIAUTH_ODOO_KEYCLOAK_ICON_PATH", "odoo_logo.svg")}"
+        }
         # ensure external icon is available to avoid break the aplication (see the implementati0on of omniauth_helper.rb/oauth_icon)
         Decidim::Odoo.keycloak_omniauth[:icon_path] = "media/images/odoo_logo.png" if Decidim::Odoo.keycloak_omniauth[:icon_path].blank?
 
@@ -42,7 +45,7 @@ module Decidim
       end
 
       initializer "decidim_odoo.user_sync" do
-        ActiveSupport::Notifications.subscribe "decidim.user.omniauth_registration" do |_name, data|
+        ActiveSupport::Notifications.subscribe(/decidim\.user\.omniauth_(registration||login)/) do |_name, data|
           Decidim::Odoo::OmniauthUserSyncJob.perform_later(data) if data[:provider] == Decidim::Odoo::OMNIAUTH_PROVIDER_NAME
         end
         ActiveSupport::Notifications.subscribe "decidim.odoo.user.updated" do |_name, data|
