@@ -3,7 +3,6 @@ PATH
   specs:
     decidim-odoo (0.6)
       decidim-core (>= 0.31, < 0.32)
-      decidim-initiatives (>= 0.31, < 0.32)
       omniauth-keycloak (~> 1.5)
 
 GEM
@@ -989,6 +988,7 @@ DEPENDENCIES
   byebug (~> 11.0)
   decidim (= 0.31)
   decidim-dev (= 0.31)
+  decidim-initiatives (= 0.31)
   decidim-odoo!
   letter_opener_web
   web-console

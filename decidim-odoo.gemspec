@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE-AGPLv3.txt", "Rakefile", "README.md"]
 
   s.add_dependency "decidim-core", Decidim::Odoo::COMPAT_DECIDIM_VERSION
-  s.add_dependency "decidim-initiatives", Decidim::Odoo::COMPAT_DECIDIM_VERSION
   s.add_dependency "omniauth-keycloak", "~> 1.5"
 
   s.add_development_dependency "decidim-dev", Decidim::Odoo::COMPAT_DECIDIM_VERSION # rubocop:disable Gemspec/DevelopmentDependencies
