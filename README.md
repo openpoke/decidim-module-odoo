@@ -81,7 +81,7 @@ In order to make the Odoo OAuth method with Keycloak available you need to add t
   omniauth:
     odoo_keycloak:
       enabled: true
-      icon_path: media/images/odoo_logo.svg
+      icon_path: media/images/odoo_logo.png
 ```
 
 The rest of the configuration can be done with an initializer file as the ones in
