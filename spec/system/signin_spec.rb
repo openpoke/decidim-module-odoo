@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "Login page" do
+describe "Login_page" do
   let!(:organization) { create(:organization) }
 
   before do

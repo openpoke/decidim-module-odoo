@@ -66,6 +66,8 @@ Depending on your Decidim version, choose the corresponding version to ensure co
 
 | Version | Compatible decidim versions |
 |---------|-----------------------------|
+| 0.6.x   | v0.31.x                     |
+| 0.5.x   | v0.30.x                     |
 | 0.4.x   | v0.29.x                     |
 | 0.2.x   | v0.27.x                     |
 | 0.1.x   | v0.25.x, v0.26.x            |
@@ -79,7 +81,7 @@ In order to make the Odoo OAuth method with Keycloak available you need to add t
   omniauth:
     odoo_keycloak:
       enabled: true
-      icon_path: media/images/odoo_logo.svg
+      icon_path: media/images/odoo_logo.png
 ```
 
 The rest of the configuration can be done with an initializer file as the ones in

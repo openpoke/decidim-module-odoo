@@ -16,7 +16,7 @@ module Decidim
         end
 
         def unique_id
-          Digest::SHA512.hexdigest("#{uid}-#{Rails.application.secrets.secret_key_base}")
+          Digest::SHA512.hexdigest("#{uid}-#{Rails.application.secret_key_base}")
         end
 
         protected
