@@ -66,6 +66,7 @@ Depending on your Decidim version, choose the corresponding version to ensure co
 
 | Version | Compatible decidim versions |
 |---------|-----------------------------|
+| 0.7.x   | v0.32.x                     |
 | 0.6.x   | v0.31.x                     |
 | 0.5.x   | v0.30.x                     |
 | 0.4.x   | v0.29.x                     |
