@@ -10,6 +10,7 @@ module Decidim
 
         def metadata
           super.merge(
+            **extra_properties,
             uid:,
             odoo_user_ref: odoo_user&.ref
           )
@@ -39,6 +40,10 @@ module Decidim
           rescue Decidim::Odoo::Error => _e
             nil
           end
+        end
+
+        def extra_properties
+          odoo_api_user.to_h.slice(*Decidim::Odoo.extra_authorization_properties)
         end
 
         def user_valid
