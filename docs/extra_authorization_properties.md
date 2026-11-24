@@ -13,7 +13,7 @@ end
 
 - `extra_authorization_properties`: Odoo partner properties stored in the authorization metadata.
 - `extra_authorization_options`: properties that admins can use as options when configuring permissions, with
-  their type.
+  their type (Currently only `:boolean` is supported).
 
 The properties are not updated in real time. They are only refreshed when the user is synchronized with Odoo
 (when the user signs in with Odoo, from the Odoo members page in the admin or with
@@ -29,3 +29,19 @@ background jobs to finish. Otherwise, users with outdated authorizations will no
 Properties with the `:boolean` type are shown as a checkbox in the permissions form. When it is checked, only
 users whose property is `true` are allowed to perform the action. Any other type is compared with the exact
 value, as Decidim does by default.
+
+## Translations
+
+Each property configured in `extra_authorization_options` needs an I18n key in your application. Decidim uses it
+as the label of the option in the admin permissions form and as the field name shown to users when they are not
+allowed to perform the action. Optionally, you can add a help text for the admin form with the `_help` suffix:
+
+```yaml
+en:
+  decidim:
+    authorization_handlers:
+      odoo_member:
+        fields:
+          signature_delegated: Signature delegated
+          signature_delegated_help: Only users who have delegated their signature in Odoo
+```
