@@ -16,6 +16,8 @@ en:
     authorization_handlers:
       odoo_member:
         explanation: Get verified when the user is member or coop. candidate in Odoo
+        fields:
+          signature_delegated: Signature delegated
         name: Odoo Membership
     odoo:
       admin:
