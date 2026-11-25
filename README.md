@@ -97,6 +97,7 @@ The rest of the configuration can be done with an initializer file as the ones i
 | OMNIAUTH_ODOO_KEYCLOAK_ICON_PATH     | **Optional**. The icon path for the "Sign in with Odoo" button. In order to replace the default one, you need to include it under `app/packs/images` directory and reference it here as `media/images/your-icon.svg` | `media/images/odoo_logo.svg` |
 | ODOO_API_BASE_URL                    | The base URL for the Odoo API                                                                                                                                                                                        | `https://example.org/api`    |
 | ODOO_API_API_KEY                     | The API key to authenticate with the API                                                                                                                                                                             | `your-api-key`               |
+| ODOO_EXTRA_AUTHORIZATION_PROPERTIES  | **Optional**. Comma-separated list of Odoo partner properties to be stored in the `odoo_member` authorization metadata. See [Extra authorization properties](docs/extra_authorization_properties.md) | `signature_delegated`        |
 
 > **IMPORTANT**: Remember to activate the verification method `odoo_member` in the
 > Decidim `/system` admin page for your organization.

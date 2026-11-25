@@ -46,6 +46,18 @@ module Decidim::Odoo
         end
       end
 
+      context "when there are extra authorization properties" do
+        let(:data) { JSON.parse(file_fixture("find_partner_by_vat_valid_response.json").read).merge("signature_delegated" => true) }
+
+        before do
+          allow(Decidim::Odoo).to receive(:extra_authorization_properties).and_return([:signature_delegated])
+        end
+
+        it "adds them to the metadata" do
+          expect(subject.metadata).to eq(metadata.merge(signature_delegated: true))
+        end
+      end
+
       context "when the user is not a member" do
         let(:odoo_user) { create(:odoo_user) }
 

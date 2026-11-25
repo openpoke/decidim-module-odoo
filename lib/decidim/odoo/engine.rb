@@ -59,6 +59,13 @@ module Decidim
         if Decidim::Odoo.authorizations.include?(:odoo_member)
           Decidim::Verifications.register_workflow(:odoo_member) do |workflow|
             workflow.form = "Decidim::Odoo::Verifications::OdooMember"
+            workflow.action_authorizer = "Decidim::Odoo::Verifications::OdooMemberActionAuthorizer"
+
+            workflow.options do |options|
+              Decidim::Odoo.extra_authorization_options.each do |property, type|
+                options.attribute property, type:, required: false
+              end
+            end
           end
         end
       end

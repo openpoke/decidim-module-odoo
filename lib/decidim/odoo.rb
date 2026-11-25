@@ -35,6 +35,14 @@ module Decidim
       [:odoo_member]
     end
 
+    config_accessor :extra_authorization_properties do
+      Decidim::Env.new("ODOO_EXTRA_AUTHORIZATION_PROPERTIES").to_array.map(&:to_sym)
+    end
+
+    config_accessor :extra_authorization_options do
+      {}
+    end
+
     class Error < StandardError; end
   end
 end
